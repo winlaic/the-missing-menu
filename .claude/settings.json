@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /star-home/yelingxuan/code/vscode-plugins/open_as_workspace && export PATH=\"$HOME/.nvm/versions/node/v24.13.1/bin:$PATH\" && npm run compile && npx @vscode/vsce package 2>&1 || true",
+            "timeout": 60,
+            "statusMessage": "Building VSIX..."
+          }
+        ]
+      }
+    ]
+  }
+}

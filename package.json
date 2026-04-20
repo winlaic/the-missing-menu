@@ -1,0 +1,112 @@
+{
+  "name": "open-as-workspace",
+  "displayName": "Open as Workspace",
+  "description": "Open a folder as a new VSCode workspace window",
+  "version": "0.0.5",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "open-as-workspace.openFolder",
+        "title": "Open as Workspace"
+      },
+      {
+        "command": "open-as-workspace.openTensorBoard",
+        "title": "Open TensorBoard Here"
+      },
+      {
+        "command": "open-as-workspace.duplicate",
+        "title": "Duplicate"
+      },
+      {
+        "command": "open-as-workspace.copyParentPath",
+        "title": "Copy Parent's Path"
+      },
+      {
+        "command": "open-as-workspace.copyStem",
+        "title": "Copy Stem"
+      },
+      {
+        "command": "open-as-workspace.copyName",
+        "title": "Copy Name"
+      },
+      {
+        "command": "open-as-workspace.selectForCompare",
+        "title": "Select for Compare"
+      },
+      {
+        "command": "open-as-workspace.compareWithSelected",
+        "title": "Compare with Selected"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "open-as-workspace.openFolder",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation@20"
+        },
+        {
+          "command": "open-as-workspace.openTensorBoard",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation@21"
+        },
+        {
+          "command": "open-as-workspace.duplicate",
+          "when": "explorerResourceIsRoot == false",
+          "group": "5_cutcopypaste@30"
+        },
+        {
+          "command": "open-as-workspace.copyParentPath",
+          "group": "6_copypath@100"
+        },
+        {
+          "command": "open-as-workspace.copyStem",
+          "group": "6_copypath@101"
+        },
+        {
+          "command": "open-as-workspace.copyName",
+          "group": "6_copypath@102"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "open-as-workspace.copyParentPath",
+          "group": "1_cutcopypaste@10"
+        },
+        {
+          "command": "open-as-workspace.copyStem",
+          "group": "1_cutcopypaste@11"
+        },
+        {
+          "command": "open-as-workspace.copyName",
+          "group": "1_cutcopypaste@12"
+        },
+        {
+          "command": "open-as-workspace.selectForCompare",
+          "group": "1_compare@20"
+        },
+        {
+          "command": "open-as-workspace.compareWithSelected",
+          "when": "open-as-workspace.hasCompareSource",
+          "group": "1_compare@10"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "^18.x",
+    "typescript": "^5.0.0"
+  }
+}
