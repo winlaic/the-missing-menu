@@ -2,7 +2,7 @@
   "name": "open-as-workspace",
   "displayName": "Open as Workspace",
   "description": "Open a folder as a new VSCode workspace window",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -42,6 +42,22 @@
       {
         "command": "open-as-workspace.compareWithSelected",
         "title": "Compare with Selected"
+      },
+      {
+        "command": "open-as-workspace.insertPathToTerminal",
+        "title": "Insert Path to Terminal"
+      },
+      {
+        "command": "open-as-workspace.insertRelativePathToTerminal",
+        "title": "Insert Relative Path to Terminal"
+      },
+      {
+        "command": "open-as-workspace.insertStemToTerminal",
+        "title": "Insert Stem to Terminal"
+      },
+      {
+        "command": "open-as-workspace.insertNameToTerminal",
+        "title": "Insert Name to Terminal"
       }
     ],
     "menus": {
@@ -72,6 +88,22 @@
         {
           "command": "open-as-workspace.copyName",
           "group": "6_copypath@102"
+        },
+        {
+          "command": "open-as-workspace.insertPathToTerminal",
+          "group": "2_terminal@1"
+        },
+        {
+          "command": "open-as-workspace.insertRelativePathToTerminal",
+          "group": "2_terminal@2"
+        },
+        {
+          "command": "open-as-workspace.insertStemToTerminal",
+          "group": "2_terminal@3"
+        },
+        {
+          "command": "open-as-workspace.insertNameToTerminal",
+          "group": "2_terminal@4"
         }
       ],
       "editor/title/context": [
@@ -86,6 +118,22 @@
         {
           "command": "open-as-workspace.copyName",
           "group": "1_cutcopypaste@12"
+        },
+        {
+          "command": "open-as-workspace.insertPathToTerminal",
+          "group": "2_terminal@1"
+        },
+        {
+          "command": "open-as-workspace.insertRelativePathToTerminal",
+          "group": "2_terminal@2"
+        },
+        {
+          "command": "open-as-workspace.insertStemToTerminal",
+          "group": "2_terminal@3"
+        },
+        {
+          "command": "open-as-workspace.insertNameToTerminal",
+          "group": "2_terminal@4"
         },
         {
           "command": "open-as-workspace.selectForCompare",

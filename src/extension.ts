@@ -240,6 +240,66 @@ export function activate(context: vscode.ExtensionContext) {
         )
     );
 
+    // Insert Path to Terminal
+    context.subscriptions.push(
+        vscode.commands.registerCommand(
+            'open-as-workspace.insertPathToTerminal',
+            (uri: vscode.Uri) => {
+                if (!uri) { return; }
+                const terminal = vscode.window.activeTerminal;
+                if (!terminal) { vscode.window.showErrorMessage('No active terminal.'); return; }
+                terminal.sendText(uri.fsPath, false);
+                terminal.show();
+            }
+        )
+    );
+
+    // Insert Relative Path to Terminal
+    context.subscriptions.push(
+        vscode.commands.registerCommand(
+            'open-as-workspace.insertRelativePathToTerminal',
+            (uri: vscode.Uri) => {
+                if (!uri) { return; }
+                const terminal = vscode.window.activeTerminal;
+                if (!terminal) { vscode.window.showErrorMessage('No active terminal.'); return; }
+                const wsFolder = vscode.workspace.getWorkspaceFolder(uri);
+                const relative = wsFolder ? path.relative(wsFolder.uri.fsPath, uri.fsPath) : uri.fsPath;
+                terminal.sendText(relative, false);
+                terminal.show();
+            }
+        )
+    );
+
+    // Insert Stem to Terminal
+    context.subscriptions.push(
+        vscode.commands.registerCommand(
+            'open-as-workspace.insertStemToTerminal',
+            (uri: vscode.Uri) => {
+                if (!uri) { return; }
+                const terminal = vscode.window.activeTerminal;
+                if (!terminal) { vscode.window.showErrorMessage('No active terminal.'); return; }
+                const name = path.basename(uri.fsPath);
+                const ext = path.extname(name);
+                terminal.sendText(ext ? name.slice(0, -ext.length) : name, false);
+                terminal.show();
+            }
+        )
+    );
+
+    // Insert Name to Terminal
+    context.subscriptions.push(
+        vscode.commands.registerCommand(
+            'open-as-workspace.insertNameToTerminal',
+            (uri: vscode.Uri) => {
+                if (!uri) { return; }
+                const terminal = vscode.window.activeTerminal;
+                if (!terminal) { vscode.window.showErrorMessage('No active terminal.'); return; }
+                terminal.sendText(path.basename(uri.fsPath), false);
+                terminal.show();
+            }
+        )
+    );
+
     // Copy Parent's Path
     context.subscriptions.push(
         vscode.commands.registerCommand(
