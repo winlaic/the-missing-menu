@@ -4,8 +4,7 @@
   <img src="images/icon.png" alt="The Missing Menu Icon" width="128" height="128">
 </p>
 
-[![VS Code Marketplace](https://vsmarketplacebadges.dev/version/Winlaic.the-missing-menu.svg)](https://marketplace.visualstudio.com/items?itemName=Winlaic.the-missing-menu)
-[![Installs](https://vsmarketplacebadges.dev/installs/Winlaic.the-missing-menu.svg)](https://marketplace.visualstudio.com/items?itemName=Winlaic.the-missing-menu)
+[![VS Code Marketplace](https://img.shields.io/badge/VS%20Code%20Marketplace-The%20Missing%20Menu-blue.svg)](https://marketplace.visualstudio.com/items?itemName=Winlaic.the-missing-menu)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A collection of useful context menu commands for VS Code explorer and editor that you never knew you needed.
