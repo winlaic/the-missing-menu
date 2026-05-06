@@ -2,6 +2,7 @@
   "name": "the-missing-menu",
   "displayName": "The Missing Menu",
   "description": "A collection of useful context menu commands for VS Code explorer and editor",
+  "publisher": "winlaic",
   "version": "0.1.0",
   "icon": "images/icon.png",
   "engines": {
