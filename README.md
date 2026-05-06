@@ -1,5 +1,9 @@
 # The Missing Menu
 
+<p align="center">
+  <img src="images/icon.png" alt="The Missing Menu Icon" width="128" height="128">
+</p>
+
 [![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/the-missing-menu.svg)](https://marketplace.visualstudio.com/items?itemName=the-missing-menu)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/the-missing-menu.svg)](https://marketplace.visualstudio.com/items?itemName=the-missing-menu)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -38,7 +42,7 @@ All the copy/insert commands above, plus:
 
 ### Manual Installation
 
-1. Download the `.vsix` file from [Releases](https://github.com/lingxuan/the-missing-menu/releases)
+1. Download the `.vsix` file from [Releases](https://github.com/winlaic/the-missing-menu/releases)
 2. Open VS Code
 3. Press `Ctrl+Shift+P` / `Cmd+Shift+P`
 4. Type "Install from VSIX"
