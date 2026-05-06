@@ -1,147 +1,148 @@
 {
-  "name": "open-as-workspace",
-  "displayName": "Open as Workspace",
-  "description": "Open a folder as a new VSCode workspace window",
-  "version": "0.0.6",
+  "name": "the-missing-menu",
+  "displayName": "The Missing Menu",
+  "description": "A collection of useful context menu commands for VS Code explorer and editor",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.74.0"
   },
+  "license": "MIT",
   "categories": ["Other"],
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "open-as-workspace.openFolder",
+        "command": "the-missing-menu.openFolder",
         "title": "Open as Workspace"
       },
       {
-        "command": "open-as-workspace.openTensorBoard",
+        "command": "the-missing-menu.openTensorBoard",
         "title": "Open TensorBoard Here"
       },
       {
-        "command": "open-as-workspace.duplicate",
+        "command": "the-missing-menu.duplicate",
         "title": "Duplicate"
       },
       {
-        "command": "open-as-workspace.copyParentPath",
+        "command": "the-missing-menu.copyParentPath",
         "title": "Copy Parent's Path"
       },
       {
-        "command": "open-as-workspace.copyStem",
+        "command": "the-missing-menu.copyStem",
         "title": "Copy Stem"
       },
       {
-        "command": "open-as-workspace.copyName",
+        "command": "the-missing-menu.copyName",
         "title": "Copy Name"
       },
       {
-        "command": "open-as-workspace.selectForCompare",
+        "command": "the-missing-menu.selectForCompare",
         "title": "Select for Compare"
       },
       {
-        "command": "open-as-workspace.compareWithSelected",
+        "command": "the-missing-menu.compareWithSelected",
         "title": "Compare with Selected"
       },
       {
-        "command": "open-as-workspace.insertPathToTerminal",
+        "command": "the-missing-menu.insertPathToTerminal",
         "title": "Insert Path to Terminal"
       },
       {
-        "command": "open-as-workspace.insertRelativePathToTerminal",
+        "command": "the-missing-menu.insertRelativePathToTerminal",
         "title": "Insert Relative Path to Terminal"
       },
       {
-        "command": "open-as-workspace.insertStemToTerminal",
+        "command": "the-missing-menu.insertStemToTerminal",
         "title": "Insert Stem to Terminal"
       },
       {
-        "command": "open-as-workspace.insertNameToTerminal",
+        "command": "the-missing-menu.insertNameToTerminal",
         "title": "Insert Name to Terminal"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "open-as-workspace.openFolder",
+          "command": "the-missing-menu.openFolder",
           "when": "explorerResourceIsFolder",
           "group": "navigation@20"
         },
         {
-          "command": "open-as-workspace.openTensorBoard",
+          "command": "the-missing-menu.openTensorBoard",
           "when": "explorerResourceIsFolder",
           "group": "navigation@21"
         },
         {
-          "command": "open-as-workspace.duplicate",
+          "command": "the-missing-menu.duplicate",
           "when": "explorerResourceIsRoot == false",
           "group": "5_cutcopypaste@30"
         },
         {
-          "command": "open-as-workspace.copyParentPath",
+          "command": "the-missing-menu.copyParentPath",
           "group": "6_copypath@100"
         },
         {
-          "command": "open-as-workspace.copyStem",
+          "command": "the-missing-menu.copyStem",
           "group": "6_copypath@101"
         },
         {
-          "command": "open-as-workspace.copyName",
+          "command": "the-missing-menu.copyName",
           "group": "6_copypath@102"
         },
         {
-          "command": "open-as-workspace.insertPathToTerminal",
+          "command": "the-missing-menu.insertPathToTerminal",
           "group": "2_terminal@1"
         },
         {
-          "command": "open-as-workspace.insertRelativePathToTerminal",
+          "command": "the-missing-menu.insertRelativePathToTerminal",
           "group": "2_terminal@2"
         },
         {
-          "command": "open-as-workspace.insertStemToTerminal",
+          "command": "the-missing-menu.insertStemToTerminal",
           "group": "2_terminal@3"
         },
         {
-          "command": "open-as-workspace.insertNameToTerminal",
+          "command": "the-missing-menu.insertNameToTerminal",
           "group": "2_terminal@4"
         }
       ],
       "editor/title/context": [
         {
-          "command": "open-as-workspace.copyParentPath",
+          "command": "the-missing-menu.copyParentPath",
           "group": "1_cutcopypaste@10"
         },
         {
-          "command": "open-as-workspace.copyStem",
+          "command": "the-missing-menu.copyStem",
           "group": "1_cutcopypaste@11"
         },
         {
-          "command": "open-as-workspace.copyName",
+          "command": "the-missing-menu.copyName",
           "group": "1_cutcopypaste@12"
         },
         {
-          "command": "open-as-workspace.insertPathToTerminal",
+          "command": "the-missing-menu.insertPathToTerminal",
           "group": "2_terminal@1"
         },
         {
-          "command": "open-as-workspace.insertRelativePathToTerminal",
+          "command": "the-missing-menu.insertRelativePathToTerminal",
           "group": "2_terminal@2"
         },
         {
-          "command": "open-as-workspace.insertStemToTerminal",
+          "command": "the-missing-menu.insertStemToTerminal",
           "group": "2_terminal@3"
         },
         {
-          "command": "open-as-workspace.insertNameToTerminal",
+          "command": "the-missing-menu.insertNameToTerminal",
           "group": "2_terminal@4"
         },
         {
-          "command": "open-as-workspace.selectForCompare",
+          "command": "the-missing-menu.selectForCompare",
           "group": "1_compare@20"
         },
         {
-          "command": "open-as-workspace.compareWithSelected",
-          "when": "open-as-workspace.hasCompareSource",
+          "command": "the-missing-menu.compareWithSelected",
+          "when": "the-missing-menu.hasCompareSource",
           "group": "1_compare@10"
         }
       ]

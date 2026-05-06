@@ -63,7 +63,7 @@ function makeStatusItem(logdir: string, port: number): vscode.StatusBarItem {
     item.text = `$(graph) TensorBoard :${port}`;
     item.tooltip = `logdir: ${logdir}\nClick to stop`;
     item.command = {
-        command: 'open-as-workspace.stopTensorBoard',
+        command: 'the-missing-menu.stopTensorBoard',
         arguments: [logdir],
         title: 'Stop TensorBoard'
     };
@@ -91,7 +91,7 @@ export function activate(context: vscode.ExtensionContext) {
     // Open as Workspace
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'open-as-workspace.openFolder',
+            'the-missing-menu.openFolder',
             (uri: vscode.Uri) => {
                 if (!uri) {
                     vscode.window.showErrorMessage('No folder selected.');
@@ -105,7 +105,7 @@ export function activate(context: vscode.ExtensionContext) {
     // Stop TensorBoard (called from status bar)
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'open-as-workspace.stopTensorBoard',
+            'the-missing-menu.stopTensorBoard',
             (logdir: string) => {
                 stopInstance(logdir);
                 vscode.window.showInformationMessage(`TensorBoard stopped (${path.basename(logdir)})`);
@@ -116,7 +116,7 @@ export function activate(context: vscode.ExtensionContext) {
     // Open TensorBoard Here
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'open-as-workspace.openTensorBoard',
+            'the-missing-menu.openTensorBoard',
             async (uri: vscode.Uri) => {
                 if (!uri) {
                     vscode.window.showErrorMessage('No folder selected.');
@@ -214,11 +214,11 @@ export function activate(context: vscode.ExtensionContext) {
     // Select for Compare
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'open-as-workspace.selectForCompare',
+            'the-missing-menu.selectForCompare',
             (uri: vscode.Uri) => {
                 if (!uri) { return; }
                 compareSource = uri;
-                vscode.commands.executeCommand('setContext', 'open-as-workspace.hasCompareSource', true);
+                vscode.commands.executeCommand('setContext', 'the-missing-menu.hasCompareSource', true);
                 vscode.window.setStatusBarMessage(`Selected for compare: ${path.basename(uri.fsPath)}`, 3000);
             }
         )
@@ -227,7 +227,7 @@ export function activate(context: vscode.ExtensionContext) {
     // Compare with Selected
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'open-as-workspace.compareWithSelected',
+            'the-missing-menu.compareWithSelected',
             (uri: vscode.Uri) => {
                 if (!uri) { return; }
                 if (!compareSource) {
@@ -243,7 +243,7 @@ export function activate(context: vscode.ExtensionContext) {
     // Insert Path to Terminal
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'open-as-workspace.insertPathToTerminal',
+            'the-missing-menu.insertPathToTerminal',
             (uri: vscode.Uri) => {
                 if (!uri) { return; }
                 const terminal = vscode.window.activeTerminal;
@@ -257,7 +257,7 @@ export function activate(context: vscode.ExtensionContext) {
     // Insert Relative Path to Terminal
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'open-as-workspace.insertRelativePathToTerminal',
+            'the-missing-menu.insertRelativePathToTerminal',
             (uri: vscode.Uri) => {
                 if (!uri) { return; }
                 const terminal = vscode.window.activeTerminal;
@@ -273,7 +273,7 @@ export function activate(context: vscode.ExtensionContext) {
     // Insert Stem to Terminal
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'open-as-workspace.insertStemToTerminal',
+            'the-missing-menu.insertStemToTerminal',
             (uri: vscode.Uri) => {
                 if (!uri) { return; }
                 const terminal = vscode.window.activeTerminal;
@@ -289,7 +289,7 @@ export function activate(context: vscode.ExtensionContext) {
     // Insert Name to Terminal
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'open-as-workspace.insertNameToTerminal',
+            'the-missing-menu.insertNameToTerminal',
             (uri: vscode.Uri) => {
                 if (!uri) { return; }
                 const terminal = vscode.window.activeTerminal;
@@ -303,7 +303,7 @@ export function activate(context: vscode.ExtensionContext) {
     // Copy Parent's Path
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'open-as-workspace.copyParentPath',
+            'the-missing-menu.copyParentPath',
             (uri: vscode.Uri) => {
                 if (!uri) { return; }
                 vscode.env.clipboard.writeText(path.dirname(uri.fsPath));
@@ -314,7 +314,7 @@ export function activate(context: vscode.ExtensionContext) {
     // Copy Stem (filename without last extension)
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'open-as-workspace.copyStem',
+            'the-missing-menu.copyStem',
             (uri: vscode.Uri) => {
                 if (!uri) { return; }
                 const name = path.basename(uri.fsPath);
@@ -327,7 +327,7 @@ export function activate(context: vscode.ExtensionContext) {
     // Copy Name (full filename)
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'open-as-workspace.copyName',
+            'the-missing-menu.copyName',
             (uri: vscode.Uri) => {
                 if (!uri) { return; }
                 vscode.env.clipboard.writeText(path.basename(uri.fsPath));
@@ -338,7 +338,7 @@ export function activate(context: vscode.ExtensionContext) {
     // Duplicate
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'open-as-workspace.duplicate',
+            'the-missing-menu.duplicate',
             async (uri: vscode.Uri) => {
                 if (!uri) {
                     vscode.window.showErrorMessage('No file selected.');
