@@ -56,6 +56,12 @@ Right-click on any file or folder in the VS Code Explorer or Editor title bar to
 
 - VS Code 1.74.0 or higher
 
+## Screenshot
+
+<p align="center">
+  <img src="images/screenshot.png" alt="The Missing Menu Screenshot" width="400">
+</p>
+
 ## License
 
 MIT
