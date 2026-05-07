@@ -3,7 +3,7 @@
   "displayName": "The Missing Menu",
   "description": "A collection of useful context menu commands for VS Code explorer and editor",
   "publisher": "winlaic",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.74.0"
@@ -14,7 +14,7 @@
     "url": "https://github.com/winlaic/the-missing-menu.git"
   },
   "categories": ["Other"],
-  "activationEvents": [],
+  "activationEvents": ["onStartupFinished"],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -65,10 +65,81 @@
       {
         "command": "the-missing-menu.insertNameToTerminal",
         "title": "Insert Name to Terminal"
+      },
+      {
+        "command": "the-missing-menu.selectSortOrder",
+        "title": "Explorer: Select Sort Order"
+      },
+      {
+        "command": "the-missing-menu.sort.default",
+        "title": "☐ Default"
+      },
+      {
+        "command": "the-missing-menu.sort.default.checked",
+        "title": "☑ Default"
+      },
+      {
+        "command": "the-missing-menu.sort.mixed",
+        "title": "☐ Mixed"
+      },
+      {
+        "command": "the-missing-menu.sort.mixed.checked",
+        "title": "☑ Mixed"
+      },
+      {
+        "command": "the-missing-menu.sort.foldersFirst",
+        "title": "☐ Folders First"
+      },
+      {
+        "command": "the-missing-menu.sort.foldersFirst.checked",
+        "title": "☑ Folders First"
+      },
+      {
+        "command": "the-missing-menu.sort.filesFirst",
+        "title": "☐ Files First"
+      },
+      {
+        "command": "the-missing-menu.sort.filesFirst.checked",
+        "title": "☑ Files First"
+      },
+      {
+        "command": "the-missing-menu.sort.type",
+        "title": "☐ By Type"
+      },
+      {
+        "command": "the-missing-menu.sort.type.checked",
+        "title": "☑ By Type"
+      },
+      {
+        "command": "the-missing-menu.sort.modified",
+        "title": "☐ By Modified"
+      },
+      {
+        "command": "the-missing-menu.sort.modified.checked",
+        "title": "☑ By Modified"
+      },
+      {
+        "command": "the-missing-menu.sort.created",
+        "title": "☐ By Created"
+      },
+      {
+        "command": "the-missing-menu.sort.created.checked",
+        "title": "☑ By Created"
+      }
+    ],
+    "submenus": [
+      {
+        "id": "the-missing-menu.sortMenu",
+        "label": "Sort Order",
+        "icon": "$(list-ordered)"
       }
     ],
     "menus": {
       "explorer/context": [
+        {
+          "submenu": "the-missing-menu.sortMenu",
+          "group": "1_sort@100"
+        },
         {
           "command": "the-missing-menu.openFolder",
           "when": "explorerResourceIsFolder",
@@ -151,6 +222,22 @@
           "when": "the-missing-menu.hasCompareSource",
           "group": "1_compare@10"
         }
+      ],
+      "the-missing-menu.sortMenu": [
+        { "command": "the-missing-menu.sort.default.checked", "when": "the-missing-menu.currentSortOrder == default", "group": "sort@1" },
+        { "command": "the-missing-menu.sort.default", "when": "the-missing-menu.currentSortOrder != default", "group": "sort@1" },
+        { "command": "the-missing-menu.sort.mixed.checked", "when": "the-missing-menu.currentSortOrder == mixed", "group": "sort@2" },
+        { "command": "the-missing-menu.sort.mixed", "when": "the-missing-menu.currentSortOrder != mixed", "group": "sort@2" },
+        { "command": "the-missing-menu.sort.foldersFirst.checked", "when": "the-missing-menu.currentSortOrder == foldersFirst", "group": "sort@3" },
+        { "command": "the-missing-menu.sort.foldersFirst", "when": "the-missing-menu.currentSortOrder != foldersFirst", "group": "sort@3" },
+        { "command": "the-missing-menu.sort.filesFirst.checked", "when": "the-missing-menu.currentSortOrder == filesFirst", "group": "sort@4" },
+        { "command": "the-missing-menu.sort.filesFirst", "when": "the-missing-menu.currentSortOrder != filesFirst", "group": "sort@4" },
+        { "command": "the-missing-menu.sort.type.checked", "when": "the-missing-menu.currentSortOrder == type", "group": "sort@5" },
+        { "command": "the-missing-menu.sort.type", "when": "the-missing-menu.currentSortOrder != type", "group": "sort@5" },
+        { "command": "the-missing-menu.sort.modified.checked", "when": "the-missing-menu.currentSortOrder == modified", "group": "sort@6" },
+        { "command": "the-missing-menu.sort.modified", "when": "the-missing-menu.currentSortOrder != modified", "group": "sort@6" },
+        { "command": "the-missing-menu.sort.created.checked", "when": "the-missing-menu.currentSortOrder == created", "group": "sort@7" },
+        { "command": "the-missing-menu.sort.created", "when": "the-missing-menu.currentSortOrder != created", "group": "sort@7" }
       ]
     }
   },

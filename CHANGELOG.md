@@ -2,6 +2,12 @@
 
 All notable changes to the "The Missing Menu" extension will be documented in this file.
 
+## [0.1.1] - 2026-05-07
+
+### Added
+- Explorer Sort Order submenu - Choose file/folder sort order directly from the Explorer context menu (Default, Mixed, Folders First, Files First, By Type, By Modified, By Created)
+- Explorer: Select Sort Order command with QuickPick UI
+
 ## [0.1.0] - 2026-05-06
 
 ### Added

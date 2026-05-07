@@ -4,6 +4,58 @@ import * as fs from 'fs';
 import * as net from 'net';
 import * as path from 'path';
 
+// ── Explorer Sort Order ───────────────────────────────────────────────────────
+
+const SORT_OPTIONS: [string, string][] = [
+    ['default', 'Default'],
+    ['mixed', 'Mixed'],
+    ['foldersFirst', 'Folders First'],
+    ['filesFirst', 'Files First'],
+    ['type', 'By Type'],
+    ['modified', 'By Modified'],
+    ['created', 'By Created'],
+];
+
+type ConfigSource = 'workspace' | 'remote' | 'user' | 'default';
+
+interface ConfigInfo {
+    effective: string;
+    source: ConfigSource;
+}
+
+function getConfigInfo(): ConfigInfo {
+    const config = vscode.workspace.getConfiguration('explorer');
+    const effective = config.get<string>('sortOrder') || 'default';
+    const inspected = config.inspect<string>('sortOrder');
+
+    if (inspected?.workspaceValue !== undefined) {
+        return { effective, source: 'workspace' };
+    }
+    if (inspected?.workspaceFolderValue !== undefined) {
+        return { effective, source: 'workspace' };
+    }
+    const remoteVal = (inspected as any)?.remoteValue as string | undefined;
+    if (remoteVal !== undefined) {
+        return { effective, source: 'remote' };
+    }
+    if (inspected?.globalValue !== undefined) {
+        return { effective, source: 'user' };
+    }
+    return { effective, source: 'default' };
+}
+
+function syncContextKey() {
+    const info = getConfigInfo();
+    vscode.commands.executeCommand('setContext', 'the-missing-menu.currentSortOrder', info.effective);
+}
+
+const SOURCE_LABELS: Record<ConfigSource, string> = {
+    workspace: 'Workspace',
+    remote: 'Remote',
+    user: 'User',
+    default: 'Default',
+};
+
 // ── TensorBoard instance tracker ──────────────────────────────────────────────
 
 interface TBInstance {
@@ -85,6 +137,74 @@ function copyEntry(src: string, dest: string): Promise<void> {
 // ── Extension entry ───────────────────────────────────────────────────────────
 
 export function activate(context: vscode.ExtensionContext) {
+    // Explorer Sort Order
+    syncContextKey();
+
+    // QuickPick command
+    context.subscriptions.push(
+        vscode.commands.registerCommand('the-missing-menu.selectSortOrder', async () => {
+            const info = getConfigInfo();
+            const sourceLabel = SOURCE_LABELS[info.source];
+
+            const items: vscode.QuickPickItem[] = SORT_OPTIONS.map(([value, label]) => ({
+                label: value === info.effective ? `☑ ${label}` : `☐ ${label}`,
+                description: value === info.effective && info.source !== 'workspace' ? `(from ${sourceLabel})` : undefined,
+            }));
+
+            if (info.source === 'workspace') {
+                items.push(
+                    { label: '', kind: vscode.QuickPickItemKind.Separator },
+                    { label: '$(close) Remove Workspace Setting', description: 'Inherit from Remote / User' }
+                );
+            }
+
+            const placeHolder = info.source === 'workspace'
+                ? 'Workspace setting'
+                : `Inherited from ${sourceLabel}`;
+
+            const selected = await vscode.window.showQuickPick(items, {
+                title: 'Explorer Sort Order',
+                placeHolder,
+            });
+
+            if (!selected) {
+                return;
+            }
+
+            const idx = items.indexOf(selected);
+            const config = vscode.workspace.getConfiguration('explorer');
+
+            if (info.source === 'workspace' && idx === items.length - 1) {
+                await config.update('sortOrder', undefined, vscode.ConfigurationTarget.Workspace);
+            } else if (idx >= 0 && idx < SORT_OPTIONS.length) {
+                await config.update('sortOrder', SORT_OPTIONS[idx][0], vscode.ConfigurationTarget.Workspace);
+            }
+        })
+    );
+
+    // Individual sort commands
+    for (const [value] of SORT_OPTIONS) {
+        context.subscriptions.push(
+            vscode.commands.registerCommand(`the-missing-menu.sort.${value}`, async () => {
+                await vscode.workspace.getConfiguration('explorer').update('sortOrder', value, vscode.ConfigurationTarget.Workspace);
+            })
+        );
+        context.subscriptions.push(
+            vscode.commands.registerCommand(`the-missing-menu.sort.${value}.checked`, async () => {
+                await vscode.workspace.getConfiguration('explorer').update('sortOrder', value, vscode.ConfigurationTarget.Workspace);
+            })
+        );
+    }
+
+    context.subscriptions.push(
+        vscode.workspace.onDidChangeConfiguration(e => {
+            if (e.affectsConfiguration('explorer.sortOrder')) {
+                syncContextKey();
+            }
+        })
+    );
+
+    // TensorBoard
     outputChannel = vscode.window.createOutputChannel('TensorBoard');
     context.subscriptions.push(outputChannel);
 
