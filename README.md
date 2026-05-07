@@ -13,6 +13,7 @@ A collection of useful context menu commands for VS Code explorer and editor tha
 
 ### Explorer Context Menu
 
+- **Sort Order** - Choose explorer file/folder sort order from a submenu (Default, Mixed, Folders First, Files First, By Type, By Modified, By Created)
 - **Open as Workspace** - Open any folder as a new VS Code workspace window
 - **Open TensorBoard Here** - Launch TensorBoard directly from the explorer with automatic port detection
 - **Duplicate** - Copy files/folders with a new name (preserves symlinks)
